@@ -17,6 +17,7 @@ module Crunchbase
     attr_reader :updated_at
 
     attr_reader :founded_companies
+    attr_reader :news
 
     def self.get(permalink)
       self.fetch_one permalink
@@ -26,6 +27,11 @@ module Crunchbase
       self.fetch_list page, order
     end
 
+    def initialize(data)
+      super(data)
+
+      set_news(data)
+    end
     private
 
     def property_keys
@@ -42,6 +48,10 @@ module Crunchbase
       %w[founded_companies]
     end
 
+    def set_news(data)
+      return unless data and data['items'].respond_to?(:each)
+      @news = data['items'].map { |v| NewsItem.new(v) }
+    end
   end
 
 end
