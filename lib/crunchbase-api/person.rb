@@ -49,7 +49,7 @@ module Crunchbase
 
     def set_news(data)
       return unless data && data['relationships']['news'] && data['relationships']['news'].respond_to?(:each)
-      @news = data['relationships']['news'].map { |n| Crunchbase::PressReference.new(n) }
+      @news = data['relationships']['news'].map { |n| PressReference.new(n) }
     end
   end
 
