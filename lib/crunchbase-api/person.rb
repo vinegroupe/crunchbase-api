@@ -27,11 +27,6 @@ module Crunchbase
       self.fetch_list page, order
     end
 
-    def initialize(data)
-      super(data)
-
-      set_news(data)
-    end
     private
 
     def property_keys
@@ -45,12 +40,7 @@ module Crunchbase
     end
 
     def relationships
-      %w[founded_companies]
-    end
-
-    def set_news(data)
-      return unless data and data['items'].respond_to?(:each)
-      @news = data['items'].map { |v| NewsItem.new(v) }
+      %w[founded_companies news]
     end
   end
 
