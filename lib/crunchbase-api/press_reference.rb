@@ -9,7 +9,7 @@ module Crunchbase
     def initialize(data)
       @url = data['url']
       @author = data['author']
-      @posted_on = Time.at(data['posted_on']) unless data['posted_on'].nil?
+      @posted_on = Date.parse(data['posted_on']) unless data['posted_on'].nil?
       @title = data['title']
     end
 
